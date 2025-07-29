@@ -30,7 +30,7 @@ choices = ["Rock", "Paper", "Scissors"]
 
 #player
 player_choice = int(input("What do you choose? Type 0 for Rock, 1 for Paper, or 2 for Scissors: "))
-if player_choice not in [0,1,2]:
+if player_choice == 0:
     print(f"You chose rock \n {rock}")
 elif player_choice == 1:
     print(f"You chose paper \n {paper}")

@@ -1,7 +1,3 @@
----
-title: Day01 - Band Name Generator 
-description: Core Python concepts and the first interactive mini-project.
----
 
 # Band Name Generator — Project Overview
 
@@ -28,11 +24,6 @@ Create a fun program that generates a band name based on user input.
 3. Ask the user for the name of a pet and store it in a variable.
 4. Combine the city and pet name to generate their band name.
 5. Display the final result.
-
----
-
-## Log Date  
-**April 15, 2025**
 
 ---
 

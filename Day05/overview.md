@@ -1,7 +1,4 @@
----
-title: Day05 - Password Generator
-description: using import random to generate passwords
----
+
 
 # Password Generator — Project Overview
 
@@ -28,12 +25,6 @@ Generate the password in sequence. Letters, then symbols, then numbers. I
 The final password does not follow a pattern. Every time user generates a password, the positions of the symbols, numbers, and letters are different. 
 
 
----
-
-## Log Date  
-**June 6,2025**
-
----
 
 
 
