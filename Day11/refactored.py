@@ -12,7 +12,7 @@ def calculate_score(hand):
     if sum(hand) == 21 and len(hand) == 2:
         return 0
     
-    #If sum > 21 and there’s an Ace (11), turn it into 1.
+    #If sum > 21 and there's an Ace (11), turn it into 1.
     if 11 in hand and sum(hand) > 21:
         hand.remove(11)
         hand.append(1)
@@ -26,7 +26,6 @@ def play_turn(hand):
     updated_hand.append(new_card)
     new_score = calculate_score(updated_hand)
     return updated_hand, new_score
-
 
 # returns intial 2 cards 
 def deal_hand():
@@ -61,7 +60,6 @@ def compare(user_score, computer_score):
         return "You lose"
     
 # continue
-
 def game_continue():
     while True:
         new_game = input("Press [N] for new game or [E] to exit: ").upper()
@@ -72,12 +70,9 @@ def game_continue():
         else:
             print("Invalid input. Try again.")
 
-    
-
 continue_playing = True
 
 # main loop
-
 while continue_playing:
     print(ascii.black_jack)
 
@@ -93,48 +88,49 @@ while continue_playing:
 
         continue_playing = game_continue()
     else:
-        choice2 = input(" [H] Hit - Take another card \n [S] Stand - Keep current hand \n [Q] Quit game \n").upper()
-        
-        if choice2 == 'H':
-            updated_hand, new_score = play_turn(user_hand)
-            print(f"Final cards: {updated_hand}")
-            print(f"New score: {new_score}")
-            computer_score = calculate_score(computer_hand)
-            print(f"Computer cards: {computer_hand}")
-            print(f"Computer score: {computer_score}")
-        
-            print(compare(new_score, computer_score))
-
-            continue_playing = game_continue()
-
+        # Player's turn - can hit multiple times
+        game_over = False
+        while not game_over:
+            choice2 = input(" [H] Hit - Take another card \n [S] Stand - Keep current hand \n [Q] Quit game \n").upper()
             
-        elif choice2 == 'S':
-            print(f"Final cards: {user_hand}")
-            print(f"Your score: {current_score}")
+            if choice2 == 'H':
+                updated_hand, new_score = play_turn(user_hand)
+                user_hand = updated_hand
+                current_score = new_score
+                print(f"Your cards: {user_hand}")
+                print(f"Your score: {current_score}")
+                
+                if current_score > 21:
+                    print("You busted!")
+                    game_over = True
+                elif current_score == 21:
+                    print("You got 21!")
+                    game_over = True
+
+            elif choice2 == 'S':
+                print("You chose to stand.")
+                game_over = True
+
+            elif choice2 == 'Q':
+                continue_playing = False
+                game_over = True
+
+            else:
+                print("Invalid input. Try again.")
+
+        # If player didn't quit, dealer plays and show results
+        if continue_playing:
+            # Dealer plays - must draw until 17 or higher
+            while calculate_score(computer_hand) < 17:
+                computer_hand.append(deal_card())
+            
+            computer_score = calculate_score(computer_hand)
+            print(f"\n--- FINAL RESULTS ---")
+            print(f"Your final cards: {user_hand}")
+            print(f"Your final score: {current_score}")
             print(f"Computer cards: {computer_hand}")
             print(f"Computer score: {computer_score}")
 
             print(compare(current_score, computer_score))
 
             continue_playing = game_continue()
-
-
-        elif choice2 == 'Q':
-            break
-
-        else:
-            print("Invalid input. Try again.")
-    
-
-
- 
-
-
-
-
-
-
-
-
-
-
